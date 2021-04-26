@@ -1,0 +1,10 @@
+{
+  "modid": "UISlidersMod",
+  "name": "UI Sliders",
+  "author_list": ["JohnnyDevo"],
+  "description": "Adds a config menu where you can customize the position of certain combat UI elements.",
+  "dependencies": ["basemod"],
+  "version": "${project.version}",
+  "sts_version": "${SlayTheSpire.version}",
+  "mts_version": "${ModTheSpire.version}"
+}

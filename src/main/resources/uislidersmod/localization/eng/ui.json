@@ -1,0 +1,20 @@
+{
+  "uislidersmod:UISlidersMod": {
+    "TEXT": [
+      "Draw Pile",
+      "Discard Pile",
+      "Exhaust Pile",
+      "Energy Gauge",
+      "Horizontal",
+      "Vertical",
+      "Reset to Defaults",
+      "Profiles",
+      "Save",
+      "Load"
+    ],
+    "EXTRA_TEXT": [
+      "UI Sliders",
+      "Adds a config menu where you can customize the position of certain combat UI elements."
+    ]
+  }
+}
