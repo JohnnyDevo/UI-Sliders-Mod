@@ -59,14 +59,14 @@ public class UISlidersMod implements PostInitializeSubscriber, EditStringsSubscr
         }
     }
 
-    private static ModMinMaxSlider drH;
-    private static ModMinMaxSlider drV;
-    private static ModMinMaxSlider diH;
-    private static ModMinMaxSlider diV;
-    private static ModMinMaxSlider exH;
-    private static ModMinMaxSlider exV;
-    private static ModMinMaxSlider enH;
-    private static ModMinMaxSlider enV;
+    private static JobbyMinMaxSlider drH;
+    private static JobbyMinMaxSlider drV;
+    private static JobbyMinMaxSlider diH;
+    private static JobbyMinMaxSlider diV;
+    private static JobbyMinMaxSlider exH;
+    private static JobbyMinMaxSlider exV;
+    private static JobbyMinMaxSlider enH;
+    private static JobbyMinMaxSlider enV;
 
     @Override
     public void receivePostInitialize() {
@@ -118,68 +118,68 @@ public class UISlidersMod implements PostInitializeSubscriber, EditStringsSubscr
         BaseMod.registerModBadge(badgeImg, EXTRA_TEXT[0], "JohnnyDevo", EXTRA_TEXT[1], settingsPanel);
 
         //Draw pile sliders
-        settingsPanel.addUIElement(new ModLabel(TEXT[0], (Settings.WIDTH / 2.0f) - (230.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (45.0f * Settings.scale), settingsPanel, me -> {}));
-        drH = new ModMinMaxSlider(TEXT[4], (Settings.WIDTH / 2.0f) - (230.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (5.0f * Settings.scale), 0.0f, 1.0f, drawToSliderH(UISlidersConfig.getFloat(DRAW_PILE_HORIZONTAL)), null, settingsPanel, slider -> {
+        settingsPanel.addUIElement(new JobbyModLabel(TEXT[0], (Settings.WIDTH / 2.0f) - (380.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (50.0f * Settings.scale), settingsPanel, me -> {}));
+        drH = new JobbyMinMaxSlider(TEXT[4], (Settings.WIDTH / 2.0f) - (380.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (90.0f * Settings.scale), 0.0f, 1.0f, drawToSliderH(UISlidersConfig.getFloat(DRAW_PILE_HORIZONTAL)), null, settingsPanel, slider -> {
             UISlidersConfig.setFloat(DRAW_PILE_HORIZONTAL, sliderToDrawH(slider.getValue()));
             try { UISlidersConfig.save(); } catch (IOException e) { e.printStackTrace(); }
         });
         settingsPanel.addUIElement(drH);
-        drV = new ModMinMaxSlider(TEXT[5], (Settings.WIDTH / 2.0f) - (230.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (55.0f * Settings.scale), 0.0f, 1.0f, drawToSliderV(UISlidersConfig.getFloat(DRAW_PILE_VERTICAL)), null, settingsPanel, slider -> {
+        drV = new JobbyMinMaxSlider(TEXT[5], (Settings.WIDTH / 2.0f) - (380.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (130.0f * Settings.scale), 0.0f, 1.0f, drawToSliderV(UISlidersConfig.getFloat(DRAW_PILE_VERTICAL)), null, settingsPanel, slider -> {
             UISlidersConfig.setFloat(DRAW_PILE_VERTICAL, sliderToDiscardV(slider.getValue()));
             try { UISlidersConfig.save(); } catch (IOException e) { e.printStackTrace(); }
         });
         settingsPanel.addUIElement(drV);
 
         //Discard pile sliders
-        settingsPanel.addUIElement(new ModLabel(TEXT[1], (Settings.WIDTH / 2.0f) + (330.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (45.0f * Settings.scale), settingsPanel, me -> {}));
-        diH = new ModMinMaxSlider(TEXT[4], (Settings.WIDTH / 2.0f) + (330.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (5.0f * Settings.scale), 0.0f, 1.0f, discardToSliderH(UISlidersConfig.getFloat(DISCARD_PILE_HORIZONTAL)), null, settingsPanel, slider -> {
+        settingsPanel.addUIElement(new JobbyModLabel(TEXT[1], (Settings.WIDTH / 2.0f) + (180.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (50.0f * Settings.scale), settingsPanel, me -> {}));
+        diH = new JobbyMinMaxSlider(TEXT[4], (Settings.WIDTH / 2.0f) + (180.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (90.0f * Settings.scale), 0.0f, 1.0f, discardToSliderH(UISlidersConfig.getFloat(DISCARD_PILE_HORIZONTAL)), null, settingsPanel, slider -> {
             UISlidersConfig.setFloat(DISCARD_PILE_HORIZONTAL, sliderToDiscardH(slider.getValue()));
             try { UISlidersConfig.save(); } catch (IOException e) { e.printStackTrace(); }
         });
         settingsPanel.addUIElement(diH);
-        diV = new ModMinMaxSlider(TEXT[5], (Settings.WIDTH / 2.0f) + (330.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (55.0f * Settings.scale), 0.0f, 1.0f, discardToSliderV(UISlidersConfig.getFloat(DISCARD_PILE_VERTICAL)), null, settingsPanel, slider -> {
+        diV = new JobbyMinMaxSlider(TEXT[5], (Settings.WIDTH / 2.0f) + (180.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (130.0f * Settings.scale), 0.0f, 1.0f, discardToSliderV(UISlidersConfig.getFloat(DISCARD_PILE_VERTICAL)), null, settingsPanel, slider -> {
             UISlidersConfig.setFloat(DISCARD_PILE_VERTICAL, sliderToDiscardV(slider.getValue()));
             try { UISlidersConfig.save(); } catch (IOException e) { e.printStackTrace(); }
         });
         settingsPanel.addUIElement(diV);
 
         //exhaust pile sliders
-        settingsPanel.addUIElement(new ModLabel(TEXT[2], (Settings.WIDTH / 2.0f) + (330.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (245.0f * Settings.scale), settingsPanel, me -> {}));
-        exH = new ModMinMaxSlider(TEXT[4], (Settings.WIDTH / 2.0f) + (330.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (195.0f * Settings.scale), 0.0f, 1.0f, UISlidersConfig.getFloat(EXHAUST_PILE_HORIZONTAL), null, settingsPanel, slider -> {
+        settingsPanel.addUIElement(new JobbyModLabel(TEXT[2], (Settings.WIDTH / 2.0f) + (180.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (110.0f * Settings.scale), settingsPanel, me -> {}));
+        exH = new JobbyMinMaxSlider(TEXT[4], (Settings.WIDTH / 2.0f) + (180.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (70.0f * Settings.scale), 0.0f, 1.0f, UISlidersConfig.getFloat(EXHAUST_PILE_HORIZONTAL), null, settingsPanel, slider -> {
             UISlidersConfig.setFloat(EXHAUST_PILE_HORIZONTAL, slider.getValue());
             try { UISlidersConfig.save(); } catch (IOException e) { e.printStackTrace(); }
         });
         settingsPanel.addUIElement(exH);
-        exV = new ModMinMaxSlider(TEXT[5], (Settings.WIDTH / 2.0f) + (330.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (145.0f * Settings.scale), 0.0f, 1.0f, UISlidersConfig.getFloat(EXHAUST_PILE_VERTICAL), null, settingsPanel, slider -> {
+        exV = new JobbyMinMaxSlider(TEXT[5], (Settings.WIDTH / 2.0f) + (180.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (30.0f * Settings.scale), 0.0f, 1.0f, UISlidersConfig.getFloat(EXHAUST_PILE_VERTICAL), null, settingsPanel, slider -> {
             UISlidersConfig.setFloat(EXHAUST_PILE_VERTICAL, slider.getValue());
             try { UISlidersConfig.save(); } catch (IOException e) { e.printStackTrace(); }
         });
         settingsPanel.addUIElement(exV);
 
         //energy orb sliders
-        settingsPanel.addUIElement(new ModLabel(TEXT[3], (Settings.WIDTH / 2.0f) - (230.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (245.0f * Settings.scale), settingsPanel, me -> {}));
-        enH = new ModMinMaxSlider(TEXT[4], (Settings.WIDTH / 2.0f) - (230.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (195.0f * Settings.scale), 0.0f, 1.0f, UISlidersConfig.getFloat(ENERGY_HORIZONTAL), null, settingsPanel, slider -> {
+        settingsPanel.addUIElement(new JobbyModLabel(TEXT[3], (Settings.WIDTH / 2.0f) - (380.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (110.0f * Settings.scale), settingsPanel, me -> {}));
+        enH = new JobbyMinMaxSlider(TEXT[4], (Settings.WIDTH / 2.0f) - (380.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (70.0f * Settings.scale), 0.0f, 1.0f, UISlidersConfig.getFloat(ENERGY_HORIZONTAL), null, settingsPanel, slider -> {
             UISlidersConfig.setFloat(ENERGY_HORIZONTAL, slider.getValue());
             try { UISlidersConfig.save(); } catch (IOException e) { e.printStackTrace(); }
         });
         settingsPanel.addUIElement(enH);
-        enV = new ModMinMaxSlider(TEXT[5], (Settings.WIDTH / 2.0f) - (230.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (145.0f * Settings.scale), 0.0f, 1.0f, UISlidersConfig.getFloat(ENERGY_VERTICAL), null, settingsPanel, slider -> {
+        enV = new JobbyMinMaxSlider(TEXT[5], (Settings.WIDTH / 2.0f) - (380.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (30.0f * Settings.scale), 0.0f, 1.0f, UISlidersConfig.getFloat(ENERGY_VERTICAL), null, settingsPanel, slider -> {
             UISlidersConfig.setFloat(ENERGY_VERTICAL, slider.getValue());
             try { UISlidersConfig.save(); } catch (IOException e) { e.printStackTrace();}
         });
         settingsPanel.addUIElement(enV);
 
         //reset to defaults element
-        settingsPanel.addUIElement(new ModLabeledButton(TEXT[6], (Settings.WIDTH / 2.0f) - (20.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (300.0f * Settings.scale), settingsPanel, button -> {
+        settingsPanel.addUIElement(new JobbyModLabeledButton(TEXT[6], (Settings.WIDTH / 2.0f) - (170.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (150.0f * Settings.scale), settingsPanel, button -> {
             setSliderValues(getDefaultValues());
         }));
 
         //profile management
-        ModLabel profile = new ModLabel(TEXT[7], (Settings.WIDTH / 2.0f) + (95.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (150.0f * Settings.scale), settingsPanel, me -> {});
+        JobbyModLabel profile = new JobbyModLabel(TEXT[7], (Settings.WIDTH / 2.0f) - (55.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (180.0f * Settings.scale), settingsPanel, me -> {});
         settingsPanel.addUIElement(profile);
-        ModLabel currentProfile = new ModLabel(UISlidersConfig.getString(SELECTED_PROFILE), (Settings.WIDTH / 2.0f) + (155.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (190.0f * Settings.scale), settingsPanel, me -> {});
+        JobbyModLabel currentProfile = new JobbyModLabel(UISlidersConfig.getString(SELECTED_PROFILE), (Settings.WIDTH / 2.0f) - (15.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (225.0f * Settings.scale), settingsPanel, me -> {});
         settingsPanel.addUIElement(currentProfile);
-        ModButton leftArrow = new ModButton((Settings.WIDTH / 2.0f) + (85.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (220.0f * Settings.scale), ImageMaster.loadImage("uislidersmod/images/leftArrow.png"), settingsPanel, me -> {
+        JobbyModButton leftArrow = new JobbyModButton((Settings.WIDTH / 2.0f) - (95.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (250.0f * Settings.scale), ImageMaster.loadImage("uislidersmod/images/leftArrow.png"), settingsPanel, me -> {
             int i = UISlidersConfig.getInt(SELECTED_PROFILE);
             --i;
             if (i < 0) {
@@ -190,7 +190,7 @@ public class UISlidersMod implements PostInitializeSubscriber, EditStringsSubscr
             try { UISlidersConfig.save(); } catch (IOException e) { e.printStackTrace();}
         });
         settingsPanel.addUIElement(leftArrow);
-        ModButton rightArrow = new ModButton((Settings.WIDTH / 2.0f) + (170.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (220.0f * Settings.scale), ImageMaster.loadImage("uislidersmod/images/rightArrow.png"), settingsPanel, me -> {
+        JobbyModButton rightArrow = new JobbyModButton((Settings.WIDTH / 2.0f) + (20.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (250.0f * Settings.scale), ImageMaster.loadImage("uislidersmod/images/rightArrow.png"), settingsPanel, me -> {
             int i = UISlidersConfig.getInt(SELECTED_PROFILE);
             ++i;
             if (i > 9) {
@@ -201,11 +201,11 @@ public class UISlidersMod implements PostInitializeSubscriber, EditStringsSubscr
             try { UISlidersConfig.save(); } catch (IOException e) { e.printStackTrace();}
         });
         settingsPanel.addUIElement(rightArrow);
-        ModLabeledButton saveProfile = new ModLabeledButton(TEXT[8], (Settings.WIDTH / 2.0f) - (010.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (300.0f * Settings.scale), settingsPanel, button -> {
+        JobbyModLabeledButton saveProfile = new JobbyModLabeledButton(TEXT[8], (Settings.WIDTH / 2.0f) - (170.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (330.0f * Settings.scale), settingsPanel, button -> {
             saveToProfile(UISlidersConfig.getInt(SELECTED_PROFILE));
         });
         settingsPanel.addUIElement(saveProfile);
-        ModLabeledButton loadProfile = new ModLabeledButton(TEXT[9], (Settings.WIDTH / 2.0f) + (190.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (300.0f * Settings.scale), settingsPanel, button -> {
+        JobbyModLabeledButton loadProfile = new JobbyModLabeledButton(TEXT[9], (Settings.WIDTH / 2.0f) + (40.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (330.0f * Settings.scale), settingsPanel, button -> {
             loadFromProfile(UISlidersConfig.getInt(SELECTED_PROFILE));
         });
         settingsPanel.addUIElement(loadProfile);
