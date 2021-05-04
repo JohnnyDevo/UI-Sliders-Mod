@@ -19,8 +19,8 @@ public class SetUIPositionsPatch {
     public static class SetDrawPilePositionPatch {
         public static void Postfix(DrawPilePanel __instance) {
             if (UISlidersMod.UISlidersConfig != null) {
-                __instance.target_x = __instance.current_x = __instance.show_x = UISlidersMod.UISlidersConfig.getFloat(UISlidersMod.DRAW_PILE_HORIZONTAL) * Settings.WIDTH;
-                __instance.target_y = __instance.current_y = __instance.show_y = UISlidersMod.UISlidersConfig.getFloat(UISlidersMod.DRAW_PILE_VERTICAL) * Settings.HEIGHT;
+                __instance.show_x = UISlidersMod.UISlidersConfig.getFloat(UISlidersMod.DRAW_PILE_HORIZONTAL) * Settings.WIDTH;
+                __instance.show_y = UISlidersMod.UISlidersConfig.getFloat(UISlidersMod.DRAW_PILE_VERTICAL) * Settings.HEIGHT;
             }
         }
     }
@@ -32,8 +32,8 @@ public class SetUIPositionsPatch {
     public static class SetDiscardPilePositionPatch {
         public static void Postfix(DiscardPilePanel __instance) {
             if (UISlidersMod.UISlidersConfig != null) {
-                __instance.target_x = __instance.current_x = __instance.show_x = UISlidersMod.UISlidersConfig.getFloat(UISlidersMod.DISCARD_PILE_HORIZONTAL) * Settings.WIDTH;
-                __instance.target_y = __instance.current_y = __instance.show_y = UISlidersMod.UISlidersConfig.getFloat(UISlidersMod.DISCARD_PILE_VERTICAL) * Settings.HEIGHT;
+                __instance.show_x = UISlidersMod.UISlidersConfig.getFloat(UISlidersMod.DISCARD_PILE_HORIZONTAL) * Settings.WIDTH;
+                __instance.show_y = UISlidersMod.UISlidersConfig.getFloat(UISlidersMod.DISCARD_PILE_VERTICAL) * Settings.HEIGHT;
             }
         }
     }
@@ -58,8 +58,8 @@ public class SetUIPositionsPatch {
     public static class SetEnergyPanelPositionPatch {
         public static void Postfix(EnergyPanel __instance) {
             if (UISlidersMod.UISlidersConfig != null) {
-                __instance.target_x = __instance.current_x = __instance.show_x = UISlidersMod.UISlidersConfig.getFloat(UISlidersMod.ENERGY_HORIZONTAL) * Settings.WIDTH;
-                __instance.target_y = __instance.current_y = __instance.show_y = UISlidersMod.UISlidersConfig.getFloat(UISlidersMod.ENERGY_VERTICAL) * Settings.HEIGHT;
+                __instance.show_x = UISlidersMod.UISlidersConfig.getFloat(UISlidersMod.ENERGY_HORIZONTAL) * Settings.WIDTH;
+                __instance.show_y = UISlidersMod.UISlidersConfig.getFloat(UISlidersMod.ENERGY_VERTICAL) * Settings.HEIGHT;
             }
         }
     }
