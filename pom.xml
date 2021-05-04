@@ -6,7 +6,7 @@
     <!-- Change These to match your mod -->
     <groupId>uislidersmod</groupId>
     <artifactId>UISlidersMod</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
     <packaging>jar</packaging>
     <name>UISliders</name>
     <description>Adds a config menu where you can customize the position of certain combat UI elements.</description>
