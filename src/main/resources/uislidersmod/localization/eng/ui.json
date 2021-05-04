@@ -14,7 +14,7 @@
     ],
     "EXTRA_TEXT": [
       "UI Sliders",
-      "Adds a config menu where you can customize the position of certain combat UI elements."
+      "Adds a config menu where you can customize the position of certain combat UI elements. In game, hold CTRL(or whatever key modifier leads to cut/paste) to drag the elements in game."
     ]
   }
 }
