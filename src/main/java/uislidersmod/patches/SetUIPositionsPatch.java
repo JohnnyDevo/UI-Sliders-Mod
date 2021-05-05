@@ -1,7 +1,6 @@
 package uislidersmod.patches;
 
 import basemod.ReflectionHacks;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.Settings;
@@ -10,7 +9,6 @@ import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.ui.panels.*;
 import javassist.CannotCompileException;
-import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
 import uislidersmod.UISlidersMod;
@@ -238,9 +236,9 @@ public class SetUIPositionsPatch {
 
         public static float calculateX(AbstractPanel p) {
             if (UISlidersMod.UISlidersConfig.getBool(UISlidersMod.TOOLTIPS_FOLLOW)) {
-                float retVal = InputHelper.mX + offset;
-                if (retVal + 280f * Settings.scale > Settings.WIDTH) {
-                    retVal -= (280f * Settings.scale) + (2 * offset);
+                float retVal = InputHelper.mX + offset * Settings.scale;
+                if (retVal + 280f * Settings.scale > Settings.WIDTH - offset * Settings.scale) {
+                    retVal -= (280f * Settings.scale) + (2 * offset * Settings.scale);
                 }
                 return retVal;
             } else {
