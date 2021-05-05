@@ -3,13 +3,11 @@ package uislidersmod;
 import basemod.*;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import org.apache.logging.log4j.LogManager;
@@ -30,7 +28,6 @@ public class UISlidersMod implements PostInitializeSubscriber, EditStringsSubscr
     public static final String ENERGY_VERTICAL = "ENERGY_VERTICAL";
     public static final String PROFILE = "PROFILE";
     public static final String SELECTED_PROFILE = "SELECTED_PROFILE";
-    public static final String TOOLTIPS_FOLLOW = "TOOLTIPS_FOLLOW";
     public static final String ID = "uislidersmod:UISlidersMod";
     public static final Logger logger = LogManager.getLogger(UISlidersMod.class.getName());
     public static Properties UIDefaults;
@@ -104,7 +101,6 @@ public class UISlidersMod implements PostInitializeSubscriber, EditStringsSubscr
         UIDefaults.setProperty(ENERGY_VERTICAL, energyY);
 
         UIDefaults.setProperty(SELECTED_PROFILE, "0");
-        UIDefaults.setProperty(TOOLTIPS_FOLLOW, "true");
         try {
             UISlidersConfig = new SpireConfig("UI Sliders Mod", "uislidersmod", UIDefaults);
             logger.info("UISLIDER CONFIG OPTIONS LOADED:");
@@ -214,12 +210,6 @@ public class UISlidersMod implements PostInitializeSubscriber, EditStringsSubscr
             loadFromProfile(UISlidersConfig.getInt(SELECTED_PROFILE));
         });
         settingsPanel.addUIElement(loadProfile);
-
-        //tip box handling
-        tip = new JobbyModLabeledToggleButton("Tooltips Follow", (Settings.WIDTH / 2.0f) - (170.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (130.0f * Settings.scale), Color.WHITE.cpy(), FontHelper.buttonLabelFont, UISlidersConfig.getBool(TOOLTIPS_FOLLOW), settingsPanel, up -> {}, button -> {
-            UISlidersConfig.setBool(TOOLTIPS_FOLLOW, button.enabled);
-            try { UISlidersConfig.save(); } catch (IOException e) { e.printStackTrace();}
-        });
     }
 
     public static float DECK_X;
