@@ -175,7 +175,7 @@ public class UISlidersMod implements PostInitializeSubscriber, EditStringsSubscr
         settingsPanel.addUIElement(enV);
 
         //reset to defaults element
-        settingsPanel.addUIElement(new JobbyModLabeledButton(TEXT[6], (Settings.WIDTH / 2.0f) - (170.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (150.0f * Settings.scale), settingsPanel, button -> {
+        settingsPanel.addUIElement(new JobbyModLabeledButton(TEXT[6], (Settings.WIDTH / 2.0f) - (170.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (160.0f * Settings.scale), settingsPanel, button -> {
             setSliderValues(getDefaultValues());
         }));
 
