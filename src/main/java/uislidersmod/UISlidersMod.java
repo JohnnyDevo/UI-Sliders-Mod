@@ -220,6 +220,7 @@ public class UISlidersMod implements PostInitializeSubscriber, EditStringsSubscr
             UISlidersConfig.setBool(TOOLTIPS_FOLLOW, button.enabled);
             try { UISlidersConfig.save(); } catch (IOException e) { e.printStackTrace();}
         });
+        settingsPanel.addUIElement(tip);
     }
 
     public static float DECK_X;
