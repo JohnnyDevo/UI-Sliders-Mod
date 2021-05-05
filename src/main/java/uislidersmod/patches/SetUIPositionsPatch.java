@@ -1,15 +1,22 @@
 package uislidersmod.patches;
 
 import basemod.ReflectionHacks;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.ui.panels.*;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
+import javassist.expr.ExprEditor;
+import javassist.expr.MethodCall;
 import uislidersmod.UISlidersMod;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class SetUIPositionsPatch {
     @SpirePatch(
@@ -191,5 +198,80 @@ public class SetUIPositionsPatch {
             item.show_y = UISlidersMod.sliderToDrawV(val / Settings.HEIGHT) * Settings.HEIGHT;
         }
         item.show_y = val;
+    }
+
+    @SpirePatch(
+            clz = DiscardPilePanel.class,
+            method = "render"
+    )
+    @SpirePatch(
+            clz = DrawPilePanel.class,
+            method = "render"
+    )
+    @SpirePatch(
+            clz = ExhaustPanel.class,
+            method = "render"
+    )
+    @SpirePatch(
+            clz = EnergyPanel.class,
+            method = "render"
+    )
+    public static class TooltipsFollowMousePatch {
+        private static HashMap<Class<? extends AbstractPanel>, Float> xMap = makeXMap();
+        private static HashMap<Class<? extends AbstractPanel>, Float> yMap = makeYMap();
+        public static float offset = 50.0f;
+
+        public static ExprEditor Instrument() {
+            return new ExprEditor() {
+                public void edit(MethodCall m) throws CannotCompileException {
+                    String path = TooltipsFollowMousePatch.class.getName();
+                    if (m.getClassName().equals(TipHelper.class.getName()) && m.getMethodName().equals("renderGenericTip")) {
+                        m.replace(
+                                "$1 = " + path + ".calculateX(this);" +
+                                        "$2 = " + path + ".calculateY(this);" +
+                                        "$proceed($$);"
+                        );
+                    }
+                }
+            };
+        }
+
+        public static float calculateX(AbstractPanel p) {
+            if (UISlidersMod.UISlidersConfig.getBool(UISlidersMod.TOOLTIPS_FOLLOW)) {
+                float retVal = InputHelper.mX + offset;
+                if (retVal + 280f * Settings.scale > Settings.WIDTH) {
+                    retVal -= (280f * Settings.scale) + (2 * offset);
+                }
+                return retVal;
+            } else {
+                return xMap.get(p.getClass()) * Settings.scale;
+            }
+        }
+
+        public static float calculateY(AbstractPanel p) {
+            if (UISlidersMod.UISlidersConfig.getBool(UISlidersMod.TOOLTIPS_FOLLOW)) {
+                return InputHelper.mY;
+            } else {
+                return yMap.get(p.getClass()) * Settings.scale;
+            }
+        }
+
+        private static HashMap<Class<? extends AbstractPanel>, Float> makeXMap() {
+            HashMap<Class<? extends AbstractPanel>, Float> retVal = new HashMap<>();
+            retVal.put(EnergyPanel.class, 50.0f);
+            retVal.put(DrawPilePanel.class, 50.0f);
+            retVal.put(DiscardPilePanel.class, 1550.0f);
+            retVal.put(ExhaustPanel.class, 1550.0f);
+            return retVal;
+        }
+
+        private static HashMap<Class<? extends AbstractPanel>, Float> makeYMap() {
+            HashMap<Class<? extends AbstractPanel>, Float> retVal = new HashMap<>();
+            retVal.put(EnergyPanel.class, 380.0f);
+            retVal.put(DrawPilePanel.class, 470.0f);
+            retVal.put(DiscardPilePanel.class, 470.0f);
+            retVal.put(ExhaustPanel.class, 450.0f);
+            return retVal;
+        }
     }
 }
