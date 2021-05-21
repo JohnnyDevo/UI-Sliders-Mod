@@ -4,7 +4,7 @@
   <groupId>uislidersmod</groupId>
   <artifactId>UISlidersMod</artifactId>
   <name>UISliders</name>
-  <version>1.3.0</version>
+  <version>1.4.0</version>
   <description>Adds a config menu where you can customize the position of certain combat UI elements.</description>
   <build>
     <resources>
