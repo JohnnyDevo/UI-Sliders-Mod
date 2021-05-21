@@ -193,6 +193,7 @@ public class UISlidersMod implements PostInitializeSubscriber, EditStringsSubscr
             UISlidersConfig.setInt(SELECTED_PROFILE, i);
             currentProfile.text = String.valueOf(i);
             try { UISlidersConfig.save(); } catch (IOException e) { e.printStackTrace();}
+            loadFromProfile(UISlidersConfig.getInt(SELECTED_PROFILE));
         });
         settingsPanel.addUIElement(leftArrow);
         JobbyModButton rightArrow = new JobbyModButton((Settings.WIDTH / 2.0f) + (20.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (250.0f * Settings.scale), ImageMaster.loadImage("uislidersmod/images/rightArrow.png"), settingsPanel, me -> {
@@ -204,16 +205,13 @@ public class UISlidersMod implements PostInitializeSubscriber, EditStringsSubscr
             UISlidersConfig.setInt(SELECTED_PROFILE, i);
             currentProfile.text = String.valueOf(i);
             try { UISlidersConfig.save(); } catch (IOException e) { e.printStackTrace();}
+            loadFromProfile(UISlidersConfig.getInt(SELECTED_PROFILE));
         });
         settingsPanel.addUIElement(rightArrow);
-        JobbyModLabeledButton saveProfile = new JobbyModLabeledButton(TEXT[8], (Settings.WIDTH / 2.0f) - (170.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (330.0f * Settings.scale), settingsPanel, button -> {
+        JobbyModLabeledButton saveProfile = new JobbyModLabeledButton(TEXT[8], (Settings.WIDTH / 2.0f) - (65.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (330.0f * Settings.scale), settingsPanel, button -> {
             saveToProfile(UISlidersConfig.getInt(SELECTED_PROFILE));
         });
         settingsPanel.addUIElement(saveProfile);
-        JobbyModLabeledButton loadProfile = new JobbyModLabeledButton(TEXT[9], (Settings.WIDTH / 2.0f) + (40.0f * Settings.scale), (Settings.HEIGHT / 2.0f) - (330.0f * Settings.scale), settingsPanel, button -> {
-            loadFromProfile(UISlidersConfig.getInt(SELECTED_PROFILE));
-        });
-        settingsPanel.addUIElement(loadProfile);
 
         //tip box handling
         tip = new JobbyModLabeledToggleButton("Tooltips Follow", (Settings.WIDTH / 2.0f) - (170.0f * Settings.scale), (Settings.HEIGHT / 2.0f) + (130.0f * Settings.scale), Color.WHITE.cpy(), FontHelper.buttonLabelFont, UISlidersConfig.getBool(TOOLTIPS_FOLLOW), settingsPanel, up -> {}, button -> {
